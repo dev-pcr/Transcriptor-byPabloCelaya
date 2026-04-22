@@ -1,0 +1,351 @@
+:root {
+    --bg: #55f198;
+    --fg: #07590f;
+    --font-ui: 'Inria Serif', serif;
+    --font-mono: 'Roboto Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-ui);
+    height: 100vh;
+    overflow: hidden;
+}
+
+*:focus {
+    outline: 2px solid var(--fg);
+    outline-offset: 2px;
+}
+
+button:focus, select:focus, textarea:focus {
+    box-shadow: 0 0 10px rgba(7, 89, 15, 0.2);
+}
+
+/* ─── Layout ─────────────────────────────────── */
+.main-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* ─── Left Panel (Controls) ───────────────────── */
+.left-panel {
+    flex: 0 0 32%;
+    display: flex;
+    flex-direction: column;
+    padding: 80px 40px 40px 40px; /* Bajamos el panel */
+    overflow-y: auto;
+}
+
+.controls-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Audio Dropzone */
+.audio-dropzone {
+    border: 1px dashed var(--fg);
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.audio-dropzone:hover, .audio-dropzone.dragover {
+    background: rgba(7, 89, 15, 0.1);
+}
+
+.dropzone-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.audio-dropzone .main-icon {
+    width: 1.4rem !important; /* Mismo tamaño que el título */
+    height: 1.4rem !important;
+}
+
+.audio-dropzone .title {
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+.audio-dropzone .subtitle {
+    font-size: 0.85rem; /* Aumentado */
+    opacity: 0.7;
+    margin-top: 4px;
+}
+
+/* Labels & Selects */
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.matrix-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.matrix-select {
+    width: 100%;
+    background: rgba(7, 89, 15, 0.05);
+    border: 1px solid var(--fg);
+    color: var(--fg);
+    padding: 14px 16px 14px 48px; /* Espacio para el icono interno */
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    appearance: none;
+    cursor: pointer;
+}
+
+.inner-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    width: 20px !important;
+    height: 20px !important;
+    opacity: 0.8;
+}
+
+.select-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.matrix-select option {
+    background: var(--bg);
+}
+
+/* Switch / Toggle - ELIMINADO (Lógica simplificada) */
+
+/* Main Action Button */
+.main-action-btn {
+    background: #44c778; /* Color verde del botón en la imagen */
+    color: var(--fg);
+    border: none;
+    padding: 18px;
+    font-family: var(--font-ui);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-action-btn:hover:not(:disabled) {
+    background: #3eb36b;
+}
+
+.border-button {
+    background: transparent;
+    color: var(--fg);
+    border: 1px solid var(--fg);
+    padding: 14px;
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 12px;
+    width: 100%;
+}
+
+.border-button:hover {
+    background: rgba(7, 89, 15, 0.05);
+}
+
+/* ─── Right Panel (View) ──────────────────────── */
+.right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    position: relative;
+}
+
+.view-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 0;
+}
+
+#ascii-render {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    line-height: 1.05;
+    white-space: pre;
+    color: var(--fg);
+    user-select: none;
+    display: none;
+}
+
+#ascii-render.active {
+    display: block;
+}
+
+.transcription-box {
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--fg);
+    padding: 30px;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    overflow-y: auto;
+    color: var(--fg);
+    line-height: 1.8;
+}
+
+/* Floating Copy Button */
+.copy-floating-btn {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    background: var(--fg);
+    color: var(--bg);
+    border: none;
+    padding: 8px 16px;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.copy-floating-btn:hover {
+    filter: brightness(1.2);
+}
+
+/* Bottom Bar & Branding */
+.bottom-bar {
+    margin-top: auto; /* Empuja todo hacia el fondo */
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.stats-bar {
+    display: flex;
+    gap: 24px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background: rgba(7, 89, 15, 0.05);
+    padding: 10px 20px;
+    border: 1px solid var(--fg);
+}
+
+.branding {
+    margin-left: auto; /* Siempre a la derecha */
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Más espacio entre Transcriptor y by Pablo Celaya */
+}
+
+.brand-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+}
+
+.brand-author {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+/* ─── Utilities ──────────────────────────────── */
+.hidden { display: none !important; }
+
+.matrix-input {
+    width: 100%;
+    min-height: 100px;
+    background: transparent;
+    border: 1px solid var(--fg);
+    color: var(--fg); /* Texto verde */
+    padding: 16px;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    resize: none;
+    margin-top: 10px;
+}
+
+.matrix-input::placeholder {
+    color: var(--fg);
+    opacity: 0.5;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--fg); }
+
+/* Transcription elements */
+.result-text { white-space: pre-wrap; font-family: var(--font-ui); }
+.spinner {
+    display: inline-block;
+    width: 16px; height: 16px;
+    border: 2px solid rgba(7, 89, 15, 0.2);
+    border-top-color: var(--fg);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+.lucide {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+.label-icon {
+    width: 14px;
+    height: 14px;
+    opacity: 0.8;
+}
+
+.icon { /* Dropzone icon */
+    width: 32px;
+    height: 32px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+

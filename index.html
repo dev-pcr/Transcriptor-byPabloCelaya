@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcriptor IA - Pablo Celaya</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="main.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Lado Izquierdo: CONTROLES -->
+        <div class="left-panel">
+            <div class="controls-wrapper">
+                <!-- Dropzone de Audio -->
+                <!-- Cargar Audio -->
+                <div id="dropzone" class="audio-dropzone">
+                    <div class="dropzone-header">
+                        <i data-lucide="upload-cloud" class="icon main-icon"></i>
+                        <span class="title">Cargar Audio</span>
+                    </div>
+                    <span class="subtitle">MP3, WAV, M4A, MP4 - hasta 2 GB</span>
+                    <input type="file" id="audio-input" style="display: none;" accept="audio/*">
+                </div>
+
+                <!-- Grupo de Selectores -->
+                <div class="control-group">
+                    <label class="matrix-label">Modelo de Transcripción</label>
+                    <div class="select-wrapper">
+                        <i data-lucide="cpu" class="inner-icon"></i>
+                        <select id="model-select" class="matrix-select">
+                            <option value="base">Fast :: Base</option>
+                            <option value="small">Balanced :: Small</option>
+                            <option value="medium">Precise :: Medium</option>
+                            <option value="groq">Cloud :: Groq Turbo</option>
+                        </select>
+                        <i data-lucide="chevron-down" class="select-icon"></i>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="matrix-label">Modo de Salida</label>
+                    <div class="select-wrapper">
+                        <i data-lucide="file-text" class="inner-icon"></i>
+                        <select id="prompt-select" class="matrix-select">
+                            <option value="estudio">Edit :: Apuntes (Ingeniería)</option>
+                            <option value="base">Raw :: Transcripción Simple</option>
+                            <option value="otro">Custom :: Prompt Personalizado</option>
+                        </select>
+                        <i data-lucide="chevron-down" class="select-icon"></i>
+                    </div>
+                </div>
+
+                <div class="control-group advanced-group">
+                    <label class="matrix-label">Instrucciones Adicionales</label>
+                    <textarea id="custom-prompt" class="matrix-input hidden" placeholder="Ej: Resume este audio como un hilo de Twitter en español, con emojis y sin tecnicismos..."></textarea>
+                </div>
+
+                <button id="start-btn" class="main-action-btn matrix-text" disabled>
+                    Iniciar Transcripción
+                </button>
+                
+                <button id="reset-btn" class="border-button matrix-text hidden">
+                    Nueva Sesión
+                </button>
+            </div>
+        </div>
+
+        <!-- Lado Derecho: VISUALIZACIÓN -->
+        <div class="right-panel">
+            <button id="copy-btn" class="copy-floating-btn matrix-text hidden">
+                <i data-lucide="copy"></i>
+                Copiar texto
+            </button>
+
+            <div class="view-container">
+                <pre id="ascii-render" class="active"></pre>
+                <div id="transcription-box" class="transcription-box hidden">
+                    <span class="placeholder">Esperando audio...</span>
+                </div>
+            </div>
+
+            <div class="bottom-bar">
+                <div id="stats-bar" class="stats-bar hidden">
+                    <span class="stat-item">Palabras: <b id="stat-words">-</b></span>
+                    <span class="stat-item">Caracteres: <b id="stat-chars">-</b></span>
+                    <span class="stat-item">Tiempo: <b id="stat-time">-</b></span>
+                    <span class="stat-item">Modelo: <b id="stat-model">-</b></span>
+                </div>
+                <div class="branding">
+                    <h1 class="brand-title">Transcriptor</h1>
+                    <p class="brand-author">by Pablo Celaya</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+
+# App-specific
+/temp/
+/Transcripciones/
+*.mp3
+*.wav
+*.m4a
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,49 @@
+============================================================
+  TRANSCRIPTOR IA — by Pablo Celaya
+  Instrucciones de instalación y uso (Versión GitHub)
+============================================================
+
+Este proyecto permite transcribir audios largos de forma gratuita usando Whisper (local) o Groq (nube) y formatearlos automáticamente como apuntes de estudio profesionales.
+
+════════════════════════════════════════════════════════════
+  PRIMERA VEZ — CONFIGURACIÓN INICIAL
+════════════════════════════════════════════════════════════
+
+1. Python & FFmpeg
+──────────────────
+   - Asegúrate de tener Python 3.10+ instalado y en el PATH.
+   - Instala FFmpeg y agrega la carpeta /bin al PATH de tu sistema (necesario para manejar archivos de audio).
+
+2. Dependencias
+───────────────
+   - Ejecuta INSTALAR.bat. Esto descargará las librerías necesarias (Flask, Pydub, Groq, Whisper, Torch).
+
+3. Configuración de API Key (IMPORTANTE)
+────────────────────────────────────────
+   - Este proyecto usa Groq para el formateo rápido. Es gratis.
+   - Crea una cuenta en https://console.groq.com.
+   - Crea una API Key.
+   - En la carpeta raíz del proyecto, crea un archivo llamado **.env**.
+   - Pega lo siguiente dentro del archivo:
+     GROQ_API_KEY=tu_clave_de_groq_aqui
+   - También puedes usar el archivo **.env.example** como plantilla.
+
+════════════════════════════════════════════════════════════
+  USO DEL PROGRAMA
+════════════════════════════════════════════════════════════
+
+1. Inicia el servidor ejecutando **INICIAR.bat**. Se abrirá automáticamente en tu navegador (http://localhost:5000).
+2. Arrastra tu audio (MP3, WAV, M4A) al área de carga.
+3. Elige el modelo: 
+   - FAST/PRECISE: Procesamiento local (usa tu CPU/GPU).
+   - CLOUD (Groq): Procesamiento en la nube (ultra rápido).
+4. Elige el modo de salida (Apuntes, Transcripción Simple o Prompt Personalizado).
+5. Haz clic en **"Iniciar Transcripción"**.
+6. Al terminar, usa el botón **"Copiar Texto"** para llevar tus apuntes a Word o Notion.
+
+════════════════════════════════════════════════════════════
+  NOTAS TÉCNICAS
+════════════════════════════════════════════════════════════
+- El sistema divide audios largos automáticamente buscando silencios para no cortar palabras.
+- Si cambias el prompt después de transcribir, dale a "Volver a Procesar" para obtener el nuevo formato sin esperar a que la IA vuelva a escuchar el audio.
+============================================================
