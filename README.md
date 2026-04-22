@@ -2,14 +2,19 @@
 
 Este proyecto permite transcribir audios largos de forma gratuita usando Whisper (local) o Groq (nube) y formatearlos automáticamente como apuntes de estudio profesionales.
 
-## 🚀 Primera Vez — Configuración Inicial
+## 🤖 Instalación Automática con IA
+Si usas un asistente de programación IA (como **Antigravity** o Cline), puedes ahorrarte todos los pasos manuales. Solo tienes que abrir este proyecto en tu editor y decirle a la IA:
+> *"Lee el archivo README.md y haz la instalación y configuración completa por mí."*
+La IA se encargará de configurar tu entorno, instalar las librerías necesarias y dejar todo listo para funcionar.
+
+## 🚀 Primera Vez — Configuración Manual
 
 ### 1. Python & FFmpeg
 - Asegúrate de tener **Python 3.10+** instalado y agregado al `PATH`.
 - Instala **FFmpeg** y agrega la carpeta `/bin` al `PATH` de tu sistema (necesario para el manejo interno de archivos de audio).
 
 ### 2. Dependencias
-- Ejecuta el archivo `INSTALAR.bat`. Esto descargará todas las librerías necesarias (Flask, Pydub, Groq, Whisper, Torch) de forma automática.
+- Ejecuta el archivo `INSTALAR.bat`. Esto descargará todas las librerías necesarias (Flask, Pydub, Groq, Whisper, Torch) de forma automática. El sistema detectará automáticamente si te falta instalar Python.
 
 ### 3. Configuración de API Key (IMPORTANTE)
 Este proyecto utiliza Groq para el formateo ultra rápido de textos con Llama 3. Es 100% gratis.
@@ -21,9 +26,19 @@ Este proyecto utiliza Groq para el formateo ultra rápido de textos con Llama 3.
    GROQ_API_KEY=tu_clave_de_groq_aqui
    ```
 
+## 🖥️ Crear un Acceso Directo (Recomendado)
+
+Para tener la aplicación siempre a mano en tu escritorio con su logo oficial:
+1. Haz clic derecho sobre el archivo `INICIAR.bat`.
+2. Selecciona **"Mostrar más opciones"** (si estás en Windows 11) y luego **"Enviar a" > "Escritorio (crear acceso directo)"**.
+3. Ve a tu Escritorio, haz clic derecho sobre el acceso directo recién creado y selecciona **"Propiedades"**.
+4. Ve a la pestaña **"Acceso directo"** y haz clic en el botón **"Cambiar icono..."**.
+5. Haz clic en "Examinar", busca la carpeta de este proyecto y selecciona el archivo `logo.ico`.
+6. Haz clic en "Aceptar" y ¡listo! Tendrás la aplicación en tu escritorio como un programa nativo.
+
 ## 💻 Uso del Programa
 
-1. Inicia el servidor ejecutando **`INICIAR.bat`**. La interfaz se abrirá automáticamente en tu navegador en `http://localhost:5000`.
+1. Inicia el servidor ejecutando tu acceso directo o **`INICIAR.bat`**. La interfaz se abrirá automáticamente en tu navegador en `http://localhost:5000`.
 2. Arrastra tu audio (MP3, WAV, M4A) al área de carga.
 3. Elige el modelo de transcripción: 
    - **FAST/PRECISE**: Procesamiento local (usa tu CPU/GPU a través de Whisper).
