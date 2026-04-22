@@ -7,6 +7,24 @@ echo  ============================================================
 echo       TRANSCRIPTOR IA - INSTALADOR DE DEPENDENCIAS
 echo  ============================================================
 echo.
+
+:: Verificar si Python esta instalado
+python --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo  [!] ERROR CRITICO: Python no esta instalado o no esta en el PATH.
+    echo.
+    echo      Paso 1: Ve a https://www.python.org/downloads/
+    echo      Paso 2: Descarga la ultima version de Python.
+    echo      Paso 3: AL INSTALAR, MARCA LA CASILLA "Add python.exe to PATH" ^(MUY IMPORTANTE^).
+    echo.
+    echo      Una vez instalado correctamente, vuelve a ejecutar este archivo.
+    echo.
+    pause
+    exit /b
+)
+
+echo  [OK] Python detectado.
+echo.
 echo  1. Actualizando PIP...
 python -m pip install --upgrade pip
 
@@ -31,7 +49,9 @@ ffmpeg -version >nul 2>&1
 if %errorlevel% neq 0 (
     echo.
     echo  [!] ADVERTENCIA: No se detecto FFmpeg en el sistema.
-    echo      Asegurate de tenerlo en C:\ffmpeg\bin y en el PATH.
+    echo      Para que el programa funcione, debes descargar FFmpeg.
+    echo      Coloca la carpeta en C:\ffmpeg\bin y agregalo al PATH.
+    echo      (Revisa el archivo README o INSTRUCCIONES para mas detalles).
 ) else (
     echo  [OK] FFmpeg detectado.
 )
