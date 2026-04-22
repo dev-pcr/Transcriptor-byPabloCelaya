@@ -1,11 +1,10 @@
 @echo off
-chcp 65001 >nul
-title Transcriptor IA — Servidor Activo
+title Transcriptor IA - Servidor Activo
 cd /d "%~dp0"
 
 echo.
 echo  ============================================================
-echo       TRANSCRIPTOR IA — by Pablo Celaya [MODO LOCAL]
+echo       TRANSCRIPTOR IA - by Pablo Celaya [MODO LOCAL]
 echo  ============================================================
 echo.
 echo  [1/2] Iniciando el motor de Inteligencia Artificial...
@@ -18,7 +17,7 @@ python backend.py
 if %errorlevel% neq 0 (
     echo.
     echo  [!] ERROR: El servidor se detuvo inesperadamente.
-    echo      Asegúrate de haber ejecutado INSTALAR.bat primero.
+    echo      Asegurate de haber ejecutado INSTALAR.bat primero.
     pause
 )
 
